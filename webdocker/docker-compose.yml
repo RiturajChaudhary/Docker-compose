@@ -1,0 +1,16 @@
+services:
+  mysqlsrv:
+    build:
+      context: ./mysql
+    container_name: mysqldb
+    ports:
+      - "3306:3306"
+
+  phpsrv:
+    build:
+      context: ./php
+    container_name: php
+    depends_on:
+      - mysqlsrv
+    ports:
+      - "8080:80"
